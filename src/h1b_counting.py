@@ -82,11 +82,12 @@ class Insight(object):
 if __name__ == '__main__':
     data_path = 'input/h1b_input.csv'
     data = open(data_path, mode = "r")
-    if not data.read(0):
-        print("File is empty")
-        raise SystemExit
     header_row = data.readline()
     headers = header_row.split(";")
+    # If the file is empty, the code should exit 
+    if len(headers) <= 1:
+        print("File is empty")
+        raise SystemExit
     data_dict = dict.fromkeys(headers, 0)
     data_list = list()
     for row in data:
